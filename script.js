@@ -18,13 +18,15 @@ d3.csv('wealth-health-2014.csv', d => {
         .domain(d3.extent(data, d => d.Income))
         .range([0, width]);
     const xAxis = d3.axisBottom()
-        .scale(xScale);
+        .scale(xScale)
+        .ticks(5, "s");
     const yScale = d3
         .scaleLinear()
         .domain(d3.extent(data, d => d.LifeExpectancy))
         .range([height, 0]);
     const yAxis = d3.axisLeft()
-        .scale(yScale);
+        .scale(yScale)
+        .ticks(5, "s");
 
     const svg = d3.select(".chart").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -53,10 +55,26 @@ d3.csv('wealth-health-2014.csv', d => {
         .call(xAxis)
         .attr("transform", `translate(0, ${height})`);
 
+
     // Draw the axis
     svg.append("g")
         .attr("class", "axis y-axis")
-        .call(yAxis)
+        .call(yAxis);
+
+
+    svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height - 10)
+        .text("Income");
+
+   svg.append("text")
+        .attr("class", "textY")
+        .attr("text-anchor", "end")
+        .attr("x", 10)
+        .attr("y", 100)
+        .text("Life Expectancy");
+
 })
 
 
