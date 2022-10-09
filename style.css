@@ -1,4 +1,9 @@
 .chart text.textY {
 	writing-mode: vertical-lr;
-	color: blue;
+}
+
+
+.tooltip {
+	position: fixed;
+	display: block;
 }
